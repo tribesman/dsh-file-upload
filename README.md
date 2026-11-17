@@ -1,3 +1,8 @@
+<div align="center">
+
+**English** · [简体中文](docs/readme/README_zh.md) · [繁體中文](docs/readme/README_zh-TW.md) · [日本語](docs/readme/README_ja.md) · [한국어](docs/readme/README_ko.md) · [Türkçe](docs/readme/README_tr.md) · [Русский](docs/readme/README_ru.md) · [Tiếng Việt](docs/readme/README_vi.md) · [ไทย](docs/readme/README_th.md) · [Deutsch](docs/readme/README_de.md) · [Español](docs/readme/README_es.md) · [Français](docs/readme/README_fr.md) · [Українська](docs/readme/README_uk.md) · [Polski](docs/readme/README_pl.md) · [Português (Brasil)](docs/readme/README_pt-BR.md) · [العربية](docs/readme/README_ar.md) · [فارسی](docs/readme/README_fa.md) · [Bahasa Indonesia](docs/readme/README_id.md) · [Italiano](docs/readme/README_it.md)
+· [Ελληνικά](docs/readme/README_el.md) · [മലയാളം](docs/readme/README_ml.md) · [Roman Urdu](docs/readme/README_ur-Latn.md) · [Română](docs/readme/README_ro.md) · [Български](docs/readme/README_bg.md)
+
 # @dsh-plugins/file-upload
 
 A **paperclip row under Automation tasks** in the [DSH](https://github.com/deepseek-ai/deepseek-harness)
@@ -5,12 +10,19 @@ web sidebar that opens an upload page: choose a folder on the Host the same way
 the workspace dialog does, pick several files at once, and watch each one
 upload with its own progress bar.
 
+<img src="docs/assets/uploaded.png" alt="The Upload file page after three files finished uploading: the paperclip row is selected in the left sidebar, the destination folder is set, and every row shows a green bar and the Uploaded tag" width="1200" />
+
+<sub>Workspace and session names in the sidebar are blurred.</sub>
+
+</div>
+
 ## Why
 
 DSH can move bytes *out* of the workspace ([`@dsh-plugins/file-download`](https://github.com/tribesman/dsh-file-download))
 and it stages browser attachments for one prompt, but there was no way to put
 several existing files into a folder on the server without a shell on the Host.
-This plugin adds that verb, in the place the other global panels live.
+This plugin supplies the missing counterpart, in the place the other global
+panels live.
 
 ## Where it appears
 
@@ -18,6 +30,8 @@ This plugin adds that verb, in the place the other global panels live.
 | --- | --- |
 | Left sidebar | An **Upload file** row with a paperclip glyph, directly under **Automation tasks** (`order: 11`) |
 | Main column | The upload page, opened by selecting that row |
+
+<img src="docs/assets/upload-page.png" alt="The Upload file page with no destination chosen yet: the sidebar row sits under Automation tasks, the page shows a destination card and a dashed drop zone" width="1200" />
 
 Everything on the page is one flow:
 
@@ -27,12 +41,17 @@ Everything on the page is one flow:
    click-to-edit path, hidden-folder toggle, and a *Choose this folder* verdict.
    The folder list comes from the Host, so it works from a remote browser where
    no OS chooser exists.
+
+   <img src="docs/assets/folder-picker.png" alt="The Select folder on server dialog: breadcrumbs show Home and the demo folder, with archive, photos and reports listed" width="1200" />
+
 2. **Choose files** — the page's file picker accepts several files at once, and
    files dropped anywhere on the page join the same queue.
 3. **Upload files** — the queue runs one file at a time; each row shows the
    sent-bytes counter, a progress bar, and a state tag. A failed row keeps its
    message and offers **Retry**; **Cancel upload** stops the queue and leaves the
    remaining rows ready.
+
+   <img src="docs/assets/uploading.png" alt="An upload in progress: the first row reports 215 MB of 800 MB with a half-filled bar and the Uploading tag, the other rows wait as Ready, and the header offers Cancel upload" width="1200" />
 
 ## How it works
 
@@ -80,7 +99,7 @@ row by hand:
 ```yaml
 # $DSH_HOME/profiles/web/cordis.patch.yml
 - insert:
-    - id: file-upload
+    - id: file-upload-panel
       name: '@dsh-plugins/file-upload'
 ```
 
@@ -88,6 +107,11 @@ row by hand:
 ln -s /path/to/dsh-file-upload \
   "$DSH_HOME/profiles/web/node_modules/@dsh-plugins/file-upload"
 ```
+
+The row id must not repeat a shipped one: `file-upload` already belongs to
+`@deepseek-ai/dsh-client-file-upload`, the browser's prompt-attachment transport,
+and two Loader entries sharing an id compose only one of them. Hence
+`file-upload-panel`.
 
 Restart the harness once so a newly added Loader row composes. On a live
 instance an inserted row mounts without a restart.
@@ -106,7 +130,7 @@ Both knobs live in the plugin row's `config`, so the profile's patch layer keeps
 them across upgrades:
 
 ```yaml
-- id: file-upload
+- id: file-upload-panel
   name: '@dsh-plugins/file-upload'
   config:
     maxFileBytes: 1048576      # default 1073741824 (1 GiB), 1024 … 16 GiB
@@ -147,6 +171,9 @@ the patch, as shown above.
   the first byte.
 - The picker lists folders only, and cut levels report `truncated` rather than
   paging.
+- The page has no client-side preflight for `maxFileBytes`: an oversized file is
+  refused by the Host after the transfer.
+- The Host writes error text in English and keeps the errno code in the message.
 
 ## Development
 
@@ -169,8 +196,17 @@ in a VM with a stub React and DOM, so they need neither a harness nor a browser.
 | `cordis.patch.yml` | Bundle patch: the one Host row |
 | `locale/*.json` | Plugin Manager display title and description |
 | `icon.svg` | The paperclip tile icon |
+| `docs/assets/*.png` | Screenshots used by this README and its translations |
+| `docs/readme/README_*.md` | The translated READMEs |
 | `test/host.test.mjs` | Route behaviour: statuses, policies, ceiling, cancellation, failure text |
 | `test/client.test.mjs` | Bundle contract: row shape, order, dictionaries, stylesheet |
+
+## Translations
+
+English · [简体中文](docs/readme/README_zh.md) · [繁體中文](docs/readme/README_zh-TW.md) · [日本語](docs/readme/README_ja.md) · [한국어](docs/readme/README_ko.md) · [Türkçe](docs/readme/README_tr.md) · [Русский](docs/readme/README_ru.md) · [Tiếng Việt](docs/readme/README_vi.md) · [ไทย](docs/readme/README_th.md) · [Deutsch](docs/readme/README_de.md) · [Español](docs/readme/README_es.md) · [Français](docs/readme/README_fr.md) · [Українська](docs/readme/README_uk.md) · [Polski](docs/readme/README_pl.md) · [Português (Brasil)](docs/readme/README_pt-BR.md) · [العربية](docs/readme/README_ar.md) · [فارسی](docs/readme/README_fa.md) · [Bahasa Indonesia](docs/readme/README_id.md) · [Italiano](docs/readme/README_it.md) · [Ελληνικά](docs/readme/README_el.md) · [മലയാളം](docs/readme/README_ml.md) · [Roman Urdu](docs/readme/README_ur-Latn.md) · [Română](docs/readme/README_ro.md) · [Български](docs/readme/README_bg.md)
+
+The translated READMEs live in [`docs/readme/`](docs/readme). They describe the
+same plugin; where they disagree with this file, this file wins.
 
 ## License
 
