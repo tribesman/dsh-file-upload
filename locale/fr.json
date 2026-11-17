@@ -1,0 +1,6 @@
+{
+	"meta": {
+		"title": "Envoi de fichiers",
+		"description": "Choisissez un dossier sur l'hôte, sélectionnez plusieurs fichiers à la fois et suivez l'envoi de chacun avec une progression en direct. La page s'ouvre depuis la ligne au trombone sous « Tâches d'automatisation » dans la barre latérale gauche. Les fichiers sont écrits dans le dossier choisi sous les noms envoyés par le navigateur ; un nom déjà pris est conservé — le nouveau fichier arrive à côté sous « nom (1).ext » — et un fichier dépassant la limite configurée est refusé. Le plugin ajoute une route authentifiée sur l'hôte : /api/file-upload/write. Rien n'est envoyé avant que vous ne cliquiez sur « Envoyer les fichiers ». Désactiver le plugin retire la ligne, la page et la route."
+	}
+}

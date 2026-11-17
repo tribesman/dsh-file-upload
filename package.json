@@ -1,0 +1,54 @@
+{
+	"name": "@dsh-plugins/file-upload",
+	"version": "0.1.0",
+	"description": "DSH web plugin: choose a destination folder on the server like the workspace picker, select several files at once, and watch each one upload with live progress",
+	"keywords": [
+		"dsh-plugin",
+		"deepseek-harness",
+		"deepseek",
+		"cordis",
+		"upload",
+		"files",
+		"web"
+	],
+	"license": "MIT",
+	"type": "module",
+	"main": "./lib/index.js",
+	"exports": {
+		".": "./lib/index.js",
+		"./client": "./lib/client.js",
+		"./locale/*.json": "./locale/*.json",
+		"./icon": "./icon.svg",
+		"./package.json": "./package.json"
+	},
+	"files": [
+		"lib",
+		"locale",
+		"icon.svg",
+		"cordis.patch.yml",
+		"README.md",
+		"LICENSE"
+	],
+	"scripts": {
+		"test": "node --test test/*.test.mjs",
+		"check": "node --check lib/index.js && node --check lib/client.js"
+	},
+	"engines": {
+		"node": ">=22"
+	},
+	"dsh": {
+		"bundle": {
+			"patch": "./cordis.patch.yml"
+		},
+		"client": {
+			"platform": "web",
+			"immediately": true,
+			"inject": [
+				"@deepseek-ai/dsh-client-locale",
+				"@deepseek-ai/dsh-client-ui-layout",
+				"@deepseek-ai/dsh-client-ui-sidebar",
+				"@deepseek-ai/dsh-client-ui-workspace"
+			]
+		}
+	}
+}

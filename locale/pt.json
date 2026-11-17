@@ -1,0 +1,6 @@
+{
+	"meta": {
+		"title": "Envio de arquivos",
+		"description": "Escolha uma pasta no host, marque vários arquivos de uma vez e acompanhe o envio de cada um com progresso ao vivo. Abre pela linha com o clipe sob «Tarefas de automação» na barra lateral esquerda. Os arquivos são gravados na pasta escolhida com os nomes que o navegador envia; um nome já usado é preservado — o novo arquivo fica ao lado como «nome (1).ext» — e um arquivo maior que o limite configurado é recusado. O plug-in adiciona uma rota autenticada no host: /api/file-upload/write. Nada é enviado até você clicar em «Enviar arquivos». Desativar o plug-in remove a linha, a página e a rota."
+	}
+}

@@ -1,0 +1,6 @@
+{
+	"meta": {
+		"title": "File upload",
+		"description": "Choose a folder on the Host, pick several files at once, and watch each one upload with live progress. Open it from the paperclip row under Automation tasks in the left sidebar. Files are written into the folder you choose with the file names the browser sends; an existing name is kept — the new file lands beside it as \"name (1).ext\" — and a file larger than the configured limit is refused. The plugin adds one authenticated Host route at /api/file-upload/write; nothing is uploaded until you press Upload files. Turning the plugin off removes the sidebar row, the page, and that route."
+	}
+}

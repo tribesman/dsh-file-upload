@@ -1,0 +1,6 @@
+{
+	"meta": {
+		"title": "Subida de archivos",
+		"description": "Elige una carpeta en el host, marca varios archivos a la vez y sigue la subida de cada uno con progreso en vivo. Se abre desde la fila con el clip bajo «Tareas de automatización» en la barra lateral izquierda. Los archivos se escriben en la carpeta elegida con los nombres que envía el navegador; un nombre ocupado se conserva —el nuevo archivo queda al lado como «nombre (1).ext»— y un archivo mayor que el límite configurado se rechaza. El complemento añade una ruta autenticada en el host: /api/file-upload/write. No se envía nada hasta que pulse «Subir archivos». Si desactiva el complemento desaparecen la fila, la página y la ruta."
+	}
+}

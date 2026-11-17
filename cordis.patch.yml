@@ -1,0 +1,12 @@
+# Bundle patch for @dsh-plugins/file-upload.
+#
+# One Host row: it owns the authenticated write route the browser half uploads
+# into. The browser half arrives through the package's `dsh.client` declaration,
+# so this row is the only entry the Loader needs.
+#
+# The id must not repeat a shipped row: `file-upload` is already taken by
+# `@deepseek-ai/dsh-client-file-upload`, the browser's prompt-attachment
+# transport, and two Loader entries sharing one id compose only one of them.
+- insert:
+    - id: file-upload-panel
+      name: '@dsh-plugins/file-upload'

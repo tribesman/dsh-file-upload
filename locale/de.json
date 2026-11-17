@@ -1,0 +1,6 @@
+{
+	"meta": {
+		"title": "Datei-Upload",
+		"description": "Wählen Sie einen Ordner auf dem Host, markieren Sie mehrere Dateien gleichzeitig und verfolgen Sie jeden Upload mit laufendem Fortschritt. Der Einstieg ist die Zeile mit der Büroklammer unter „Automatisierungsaufgaben“ in der linken Seitenleiste. Dateien landen unter den vom Browser gesendeten Namen in dem gewählten Ordner; ein bereits vorhandener Name bleibt erhalten — die neue Datei liegt daneben als „name (1).ext“ —, und eine Datei über dem eingestellten Limit wird abgelehnt. Das Plugin fügt eine authentifizierte Host-Route unter /api/file-upload/write hinzu; nichts wird gesendet, bevor Sie „Dateien hochladen“ drücken. Wird das Plugin ausgeschaltet, verschwinden Seitenleistenzeile, Seite und Route."
+	}
+}
